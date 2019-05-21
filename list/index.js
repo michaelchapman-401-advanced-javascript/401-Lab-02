@@ -3,14 +3,12 @@
 const List = require('./list-constructor.js');
 
 let stuff = new List();
-stuff.push('a');
-stuff.push('b');
+stuff.push(1);
+stuff.push(2);
 console.log(stuff);
-let first = stuff.pop();
-console.log(stuff, 'pop');
-stuff.push('b');
+let hey = stuff.forEach((item) => {
+  return item+2;
+});
 console.log(stuff);
-let last = stuff.shift();
-console.log(stuff, 'shift');
-console.log(first);
-console.log(last);
+
+

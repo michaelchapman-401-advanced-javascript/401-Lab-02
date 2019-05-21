@@ -35,6 +35,28 @@ List.prototype.shift = function() {
   return returnValue;
 };
 
+/**
+ * // add an item to the beginning of the list and return the length
+ * @returns {*}
+ */
+List.prototype.unshift = function(item) {
+  for (let i = this.length; i > 0; i--) {
+    this[i] = this[i-1];
+  }
 
+  this[0] = item;
+  this.length++;
+  return this.length;
+};
+
+/**
+ * // Runs a callback on each item of the list, modifying the values in place
+ * @returns {*}
+ */
+List.prototype.forEach = function(callback) {
+  for(let i = 0; i < this.length; i++){
+    this[i] = (callback(this[i]));
+  }
+};
 
 module.exports = List;
