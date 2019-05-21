@@ -9,7 +9,7 @@ function List() {
  * @param item
  */
 List.prototype.push = function(item) {
-  this.data[this.length] = item;
+  this[this.length] = item;
   this.length++;
 };
 
@@ -18,10 +18,23 @@ List.prototype.push = function(item) {
  * @returns {*}
  */
 List.prototype.pop = function() {
-  let returnValue = this.data[this.length];
-  delete this.data[this.length];
+  let returnValue = this[this.length - 1];
+  delete this[this.length - 1];
   this.length--;
   return returnValue;
 };
+
+/**
+ * // Remove an item from the beginning of the list and return it's value
+ * @returns {*}
+ */
+List.prototype.shift = function() {
+  let returnValue = this[0];
+  delete this[0];
+  this.length--;
+  return returnValue;
+};
+
+
 
 module.exports = List;
