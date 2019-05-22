@@ -1,7 +1,8 @@
 'use strict';
 
-class List {
+const errorHandler = require('./error-handler.js');
 
+class List {
   constructor() {
     this.length = 0;
     this.data = {};
@@ -12,9 +13,23 @@ class List {
    * @param item
    */
   push(item) {
-    // Add an item to the end
-    this.data[this.length] = item;
-    this.length++;
+    try {
+      this.data[this.length] = item;
+      this.length++;
+    }
+    catch(e) {
+      let error = {
+        timestamp: new Date(),
+        severity: 0,
+        reason: 'Could not push',
+        message: e.message,
+        file: e.file,
+        position: e.column,
+        stack: e.stack,
+      };
+    
+      errorHandler.err(error);
+    }
   }
 
   /**
@@ -22,10 +37,25 @@ class List {
    * @returns {*}
    */
   pop() {
-    let returnValue = this.data[this.length];
-    delete this.data[this.length];
-    this.length--;
-    return returnValue;
+    try {
+      let returnValue = this.data[this.length];
+      delete this.data[this.length];
+      this.length--;
+      return returnValue;
+    }
+    catch(e) {
+      let error = {
+        timestamp: new Date(),
+        severity: 0,
+        reason: 'Could not pop',
+        message: e.message,
+        file: e.file,
+        position: e.column,
+        stack: e.stack,
+      };
+    
+      errorHandler.err(error);
+    }
   }
 
   /**
@@ -33,10 +63,30 @@ class List {
    * @returns {*}
    */
   shift() {
-    let returnValue = this.data[0];
-    delete this.data[0];
-    this.length--;
-    return returnValue;
+    try {
+      let returnValue = this.data[0];
+      delete this.data[0];
+      this.length--;
+      
+      for (let i = 0; i < this.length; i++) {
+        this.data[i] = this.data[i+1];
+      }
+
+      return returnValue;
+    }
+    catch(e) {
+      let error = {
+        timestamp: new Date(),
+        severity: 0,
+        reason: 'Could not shift',
+        message: e.message,
+        file: e.file,
+        position: e.column,
+        stack: e.stack,
+      };
+    
+      errorHandler.err(error);
+    }
   }
 
   /**
@@ -44,13 +94,28 @@ class List {
    * @returns {*}
    */
   unshift(item) {
-    for (let i = this.length; i > 0; i--) {
-      this.data[i] = this.data[i-1];
+    try {
+      for (let i = this.length; i > 0; i--) {
+        this.data[i] = this.data[i-1];
+      }
+    
+      this.data[0] = item;
+      this.length++;
+      return this.length;
     }
-  
-    this.data[0] = item;
-    this.length++;
-    return this.length;
+    catch(e) {
+      let error = {
+        timestamp: new Date(),
+        severity: 0,
+        reason: 'Could not shift',
+        message: e.message,
+        file: e.file,
+        position: e.column,
+        stack: e.stack,
+      };
+    
+      errorHandler.err(error);
+    }
   }
 
   /**
@@ -58,8 +123,23 @@ class List {
    * @returns {*}
    */
   forEach(callback) {
-    for(let i = 0; i < this.length; i++){
-      this.data[i] = callback(this.data[i]);
+    try {
+      for(let i = 0; i < this.length; i++){
+        this.data[i] = callback(this.data[i]);
+      }
+    }
+    catch(e) {
+      let error = {
+        timestamp: new Date(),
+        severity: 0,
+        reason: 'Could not shift',
+        message: e.message,
+        file: e.file,
+        position: e.column,
+        stack: e.stack,
+      };
+    
+      errorHandler.err(error);
     }
   }
 }
