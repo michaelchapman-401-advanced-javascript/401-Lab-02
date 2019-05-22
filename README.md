@@ -5,9 +5,8 @@
 ### Author: Student/Group Name
 
 ### Links and Resources
-* [submission PR](https://github.com/michaelchapman-401-advanced-javascript/Lab-01/pull/1)
-* [travis](https://travis-ci.org/michaelchapman-401-advanced-javascript/Lab-01)
-* [Heroku](https://cryptic-sands-29392.herokuapp.com)
+* [submission PR](https://github.com/michaelchapman-401-advanced-javascript/Lab-02/pull/2)
+* [travis](https://travis-ci.org/michaelchapman-401-advanced-javascript/Lab-02)
 
 ### Modules
 #### .js
