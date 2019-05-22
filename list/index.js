@@ -1,8 +1,12 @@
 'use strict';
 
-const List = require('./list-constructor.js');
+//const List = require('./list-constructor.js');
+const List = require('./list.js');
 
 let stuff = new List();
-stuff.push('a');
-stuff.push('b');
-let last = stuff.pop();
+stuff.push(1);
+stuff.push(2);
+stuff.shift();
+console.log(stuff);
+
+
